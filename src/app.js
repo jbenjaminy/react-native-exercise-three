@@ -13,8 +13,7 @@ import reducers from './reducers';
 import { Header } from './components/common';
 import LibraryList from './components/library-list';
 
-const App = () => {
-    return (
+const App = () => (
         /*
             Created a store and passed it to the Provider tag, also passed the
             reducers to the store.
@@ -22,14 +21,13 @@ const App = () => {
             *Provider tag can only have one single child component. The child
             component can have any number of children.
         */
-        <Provider store={createStore(reducers)}>
-            <View>
-                <Header headerText="Tech Stack" />
-                <LibraryList />
-            </View>
-        </Provider>
+    <Provider store={createStore(reducers)}>
+        <View style={{ flex: 1 }}>
+            <Header headerText="Tech Stack" />
+            <LibraryList />
+        </View>
+    </Provider>
 
-    );
-};
+);
 
 export default App;

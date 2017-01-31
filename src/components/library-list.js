@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
 import { connect } from 'react-redux';
+import ListItem from './list-item';
 /*  use a connect helper to get access to the redux store in the LibraryList
     component.
  *  Theory behind rendering a large list of items:
@@ -33,6 +34,7 @@ import { connect } from 'react-redux';
 class LibraryList extends Component {
     /*  put logic for creating this listView inside of a lifecycle method,
         `componentWillMount`
+     *  here we want to initialize a data source for the ListView.
      *  essentially we have this dataSource object and we tell it to take this
         list of libraries to render the screen. */
     componentWillMount() {
@@ -41,9 +43,11 @@ class LibraryList extends Component {
         });
         this.dataSource = dataSrc.cloneWithRows(this.props.libraries);
     }
-    /* have to instruct the list view how to render a specific row */
-    renderRow() {
-
+    /*  have to instruct the list view how to render a specific row
+     *  the 'library' argument is the element in the list that the ListView is
+        currently trying to render. */
+    renderRow(library) {
+        return <ListItem library={library} />;
     }
 
     render() {
@@ -66,9 +70,7 @@ class LibraryList extends Component {
  *  this libraries piece of state already had some data in it, some amount of
     initial state, therefore we have to design our reducers with the mindset
     that they will be run over and over again, and at different points in time. */
-const mapStateToProps = state => {
-    return { libraries: state.libraries };
-};
+const mapStateToProps = state => ({ libraries: state.libraries });
 
 /*  we call connect and when connect is called it returns another function; we
     then immediately call that return function, passing the LibraryList to it.
