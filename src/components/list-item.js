@@ -2,7 +2,7 @@
  *  each library item has a title, description and id.
  *  needs to know whether it is selected or not, so must get access to state */
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { TouchableWithoutFeedback, View, Text } from 'react-native';
 /*  Previously used the connect helper to get access to the application state,
     but can also use the connect helper to get access to an action creator. */
 import { connect } from 'react-redux';
@@ -18,13 +18,20 @@ import * as actions from '../actions';
 class ListItem extends Component {
     render() {
         const { titleStyle } = styles;
+        const { id, title } = this.props.library;
 
         return (
-            <CardSection>
-                <Text style={titleStyle}>
-                    {this.props.library.title}
-                </Text>
-            </CardSection>
+            <TouchableWithoutFeedback
+                onPress={() => this.props.selectLibrary(id)}
+            >
+                <View>
+                    <CardSection>
+                        <Text style={titleStyle}>
+                            {title}
+                        </Text>
+                    </CardSection>
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -37,5 +44,7 @@ const styles = {
 };
 
 /*  Purpose of the first argument of the connect function is to mapStateToProps.
- *  Purpose of the second argument is to bind action creators. */
+ *  Purpose of the second argument is to bind action creators.
+ *  Don't have to explicitly dispatch when connect function is set up this way,
+    only have to reference the specific action creator being called. */
 export default connect(null, actions)(ListItem);

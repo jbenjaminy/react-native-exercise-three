@@ -3,6 +3,7 @@
  *  We can even return null, since its not undefined, and it makes sure that if
     we call this thing at any given time, it does not default to a pre-selected
     row */
-export default () => {
+export default (state, action) => {
+    console.log(action);
     return null;
 };
