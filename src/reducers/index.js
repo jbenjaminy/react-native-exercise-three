@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import LibraryReducer from './library-reducer';
+import SelectionReducer from './selection-reducer';
 /* REDUCERS
     * reducers produce our application state.
     * might have many different reducers in our app, and need to get them
@@ -23,12 +24,13 @@ import LibraryReducer from './library-reducer';
             list to expand (by storing its id).
 */
 
-/*
-Because we set 'LibraryReducer' to this key 'libraries', if we ever
-console.log our state object (e.g., `console.log(store.getState());`), we
-expect the result to be:
+/*  Because we set 'LibraryReducer' to this key 'libraries', if we ever
+    console.log our state object (e.g., `console.log(store.getState());`), we
+    expect the result to be:
         ` { libraries: [] }`
-*/
+ *  Whatever key we provide in the combineReducers is how it will show up on the
+    state object. */
 export default combineReducers({
-    libraries: LibraryReducer
+    libraries: LibraryReducer,
+    selectedLibraryId: SelectionReducer
 });
