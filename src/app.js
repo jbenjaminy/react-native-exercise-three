@@ -11,6 +11,7 @@ thinking in terms of the reducers' */
 import { createStore } from 'redux';
 import reducers from './reducers';
 import { Header } from './components/common';
+import LibraryList from './components/library-list';
 
 const App = () => {
     return (
@@ -24,6 +25,7 @@ const App = () => {
         <Provider store={createStore(reducers)}>
             <View>
                 <Header headerText="Tech Stack" />
+                <LibraryList />
             </View>
         </Provider>
 
