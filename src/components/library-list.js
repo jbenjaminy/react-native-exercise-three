@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 class LibraryList extends Component {
     render() {
+        console.log(this.props);
         return;
     }
 }
@@ -20,7 +21,7 @@ with one argument, 'state'. we get back the array of libraries objects.
 
 */
 const mapStateToProps = state => {
-
+    return { libraries: state.libraries };
 };
 
 // we call connect and when connect is called it returns another function; we
