@@ -16,6 +16,16 @@ import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
+    /*  ORIGINAL RENDER-DESCRIPTION HELPER FUNCTION:
+            `renderDescription() {
+                const { library, selectedLibraryId } = this.props;
+                if (library.id === selectedLibraryId) {
+                    return (
+                        <Text>(library.description)</Text>
+                    );
+                }
+            }`
+    */
     render() {
         const { titleStyle } = styles;
         const { id, title } = this.props.library;
@@ -30,6 +40,7 @@ class ListItem extends Component {
                             {title}
                         </Text>
                     </CardSection>
+                    {this.renderDescription()}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -43,8 +54,16 @@ const styles = {
     }
 };
 
+const mapStateToProps = state => {
+    return { selectedLibraryId: state.selectedLibraryId };
+};
+
 /*  Purpose of the first argument of the connect function is to mapStateToProps.
  *  Purpose of the second argument is to bind action creators.
  *  Don't have to explicitly dispatch when connect function is set up this way,
-    only have to reference the specific action creator being called. */
-export default connect(null, actions)(ListItem);
+    only have to reference the specific action creator being called.
+ *  Using mapStateToProps, should look like:
+        `connect(mapStateToProps, actions)(ListItem)`
+ *  Without mapStateToProps, should look like:
+        `connect(null, actions)(ListItem)` */
+export default connect(mapStateToProps, actions)(ListItem);
