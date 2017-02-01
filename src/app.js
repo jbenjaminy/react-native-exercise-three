@@ -1,3 +1,9 @@
+/*  REDUX:
+    *   As our app begins to get more complicated, our code does not necessarily
+        have to get complicated as well.
+    *   Even though it is the case in this example, redux is not exactly designed
+        for apps with just a couple pieces of state -- designed for apps with
+        many pieces of state, many action-creators, many-reducers, etc. 6*/
 import React from 'react';
 import { View } from 'react-native';
 // provider communicates between store and react
